@@ -1,13 +1,22 @@
 package com.example.glypha_primer_parcial_giardina_saracco;
 
+import android.annotation.SuppressLint;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
 import android.util.Log;
+
+import android.view.Gravity;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -15,6 +24,8 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     Button homeBtn, searchBtn, profileBtn;
+    @SuppressLint("SetTextI18n")
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        //Elementos creados dinamicamente
+
+        createFavSeccion();
+    
 
         profileBtn = (Button) findViewById(R.id.btn_perfil);
         searchBtn = (Button) findViewById(R.id.btn_buscar);
@@ -54,4 +69,30 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    public void createFavSeccion(){
+
+        LinearLayout favContainer = findViewById(R.id.fav_container);
+
+        TextView favoritos = new TextView(this);
+        favoritos.setTextColor(getColor(R.color.bg_yellow));
+        favoritos.setText(getString(R.string.favoritos));
+        favoritos.setTextSize(16);
+        favoritos.setTypeface(null, Typeface.BOLD);
+
+        LinearLayout.LayoutParams textoParams = new LinearLayout.LayoutParams(
+                0, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f
+        );
+        favoritos.setLayoutParams(textoParams);
+
+        ImageView arrowIcon = new ImageView(this);
+        arrowIcon.setImageResource(R.drawable.icon_arrow);
+        arrowIcon.setColorFilter(getColor(R.color.bg_yellow));
+
+
+
+        favContainer.addView(favoritos);
+        favContainer.addView(arrowIcon);
+    }
+
 }
