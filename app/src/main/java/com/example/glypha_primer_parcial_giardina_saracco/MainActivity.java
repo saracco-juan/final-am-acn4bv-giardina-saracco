@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView favoritos = new TextView(this);
         favoritos.setTextColor(getColor(R.color.bg_yellow));
-        favoritos.setText("Favoritos");
+        favoritos.setText(getString(R.string.favoritos));
         favoritos.setTextSize(16);
         favoritos.setTypeface(null, Typeface.BOLD);
 
@@ -61,6 +62,5 @@ public class MainActivity extends AppCompatActivity {
 
         favContainer.addView(favoritos);
         favContainer.addView(arrowIcon);
-
     }
 }
