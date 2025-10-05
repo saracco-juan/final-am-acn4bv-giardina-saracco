@@ -6,4 +6,5 @@
     <color name="bg_yellow">#D4E157</color>
     <color name="navbar_color">#FAFFCF</color>
     <color name="bg_btn_navbar">#00FFFFFF</color>
+    <color name="dark_blue">#000e20</color>
 </resources>
