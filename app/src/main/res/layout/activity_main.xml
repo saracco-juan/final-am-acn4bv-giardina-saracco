@@ -61,5 +61,36 @@
                 android:text="@string/perfil"
                 android:textColor="@color/black" />
         </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/avatar_container"
+        android:layout_width="145dp"
+        android:layout_height="145dp"
+        android:layout_marginBottom="-75dp"
+        app:layout_constraintBottom_toTopOf="@+id/conteinter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:background="@drawable/circle_navy"
+            android:clipToOutline="true"
+            android:outlineProvider="background"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_user"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
