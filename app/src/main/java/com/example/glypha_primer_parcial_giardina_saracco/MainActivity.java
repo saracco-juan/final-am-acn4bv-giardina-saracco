@@ -35,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
         //Elementos creados dinamicamente
 
+        createFavSeccion();
+    }
+
+    public void createFavSeccion(){
+
         LinearLayout favContainer = findViewById(R.id.fav_container);
 
         TextView favoritos = new TextView(this);
@@ -56,5 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
         favContainer.addView(favoritos);
         favContainer.addView(arrowIcon);
+
     }
 }
