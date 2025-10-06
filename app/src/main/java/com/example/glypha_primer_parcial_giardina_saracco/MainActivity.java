@@ -1,7 +1,10 @@
 package com.example.glypha_primer_parcial_giardina_saracco;
 
 import android.annotation.SuppressLint;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -53,18 +56,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Hiciste click en el boton Perfil.", Toast.LENGTH_SHORT).show();
+
+                changeColorBtn(profileBtn, searchBtn, homeBtn, profileBtn);
             }
         });
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Seccion Buscar en construccion.", Toast.LENGTH_SHORT).show();
+
+                changeColorBtn(profileBtn, searchBtn, homeBtn, searchBtn);
             }
         });
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Seccion Inicio en construccion.", Toast.LENGTH_SHORT).show();
+
+                changeColorBtn(profileBtn, searchBtn, homeBtn, homeBtn);
             }
         });
 
@@ -100,6 +109,31 @@ public class MainActivity extends AppCompatActivity {
 
         favContainer.addView(favoritos);
         favContainer.addView(arrowIcon);
+    }
+
+    public void changeColorBtn(Button btnProfile, Button btnSearch, Button btnHome, Button btnSelected){
+
+        Button[] buttons = {btnProfile, btnSearch, btnHome};
+
+        for(Button btn : buttons){
+
+            if(btn == btnSelected){
+
+                btn.setTextColor(getColor(R.color.blue));
+                Drawable[] icons = btn.getCompoundDrawables();
+                Drawable icon = icons[1];
+                icon.setTint(getColor(R.color.blue));
+
+            }else{
+
+                btn.setTextColor(getColor(R.color.black));
+                Drawable[] icons = btn.getCompoundDrawables();
+                Drawable icon = icons[1];
+                icon.setTint(getColor(R.color.black));
+            }
+
+        }
+
     }
 
 }
