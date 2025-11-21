@@ -16,4 +16,13 @@
     <string name="pablo_martinez">pablo.martinez</string>
     <string name="pablo">Pablo</string>
     <string name="buenos_aires_argentina">Buenos Aires, Argentina</string>
+    <string name="busc_tu_tipo_ideal">Buscá tu tipo ideal</string>
+    <string name="busc_por_clasificaci_n">Buscá por clasificación</string>
+    <string name="tipos_si_buscar_inspiraci_n">Tipos si buscar inspiración</string>
+    <string name="si_estas_buscando_algo_nuevo_este_es_tu_lugar">Si estas buscando algo nuevo, este es tu lugar</string>
+    <string name="contemporanea">Contemporanea</string>
+    <string name="serif">Serif</string>
+    <string name="clasica">Clasica</string>
+    <string name="moderna">Moderna</string>
+    <string name="elegante">Elegante</string>
 </resources>
