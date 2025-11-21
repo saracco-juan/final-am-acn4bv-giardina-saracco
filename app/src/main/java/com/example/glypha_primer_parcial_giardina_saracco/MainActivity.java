@@ -1,6 +1,7 @@
 package com.example.glypha_primer_parcial_giardina_saracco;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.ColorFilter;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
@@ -60,14 +61,14 @@ public class MainActivity extends AppCompatActivity {
                 changeColorBtn(profileBtn, searchBtn, homeBtn, profileBtn);
             }
         });
-        searchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Seccion Buscar en construccion.", Toast.LENGTH_SHORT).show();
-
-                changeColorBtn(profileBtn, searchBtn, homeBtn, searchBtn);
-            }
-        });
+//        searchBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getApplicationContext(), "Seccion Buscar en construccion.", Toast.LENGTH_SHORT).show();
+//
+//                changeColorBtn(profileBtn, searchBtn, homeBtn, searchBtn);
+//            }
+//        });
         homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,6 +135,11 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    public void goSearch(View view){
+        Intent search = new Intent(this, SearchActivity.class);
+        startActivity(search);
     }
 
 }

@@ -62,6 +62,7 @@
                 android:backgroundTint="@color/bg_btn_navbar"
                 android:drawableTop="@drawable/icon_search"
                 android:gravity="center"
+                android:onClick="goSearch"
                 android:text="@string/buscar"
                 android:textColor="@color/black" />
 
