@@ -2,7 +2,10 @@ package com.example.glypha_primer_parcial_giardina_saracco;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +34,8 @@ public class HomeActivity extends AppCompatActivity {
         textTendenciasCards();
 
         fontClickListeners();
+
+        handleFontTest();
     }
 
     private void textCatCards(){
@@ -124,5 +129,34 @@ public class HomeActivity extends AppCompatActivity {
     private void changeFontTxt(Typeface font){
         TextView font_test_txt = findViewById(R.id.font_txtView);
         font_test_txt.setTypeface(font);
+    }
+
+    private void handleFontTest(){
+
+        EditText inputTxt = findViewById(R.id.inputFont);
+
+        TextView font_test_txt = findViewById(R.id.font_txtView);
+
+        inputTxt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() > 0) {
+                    font_test_txt.setText(s.toString());
+                } else {
+                    //Si el input esta vacio seteo el texto por defecto
+                    font_test_txt.setText(getString(R.string.probar_fuente_txt));
+                }
+            }
+        });
     }
 }
