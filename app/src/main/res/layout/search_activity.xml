@@ -16,8 +16,10 @@
         android:background="@drawable/bg_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <TextView
             android:id="@+id/tv_titulo"
@@ -25,6 +27,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="56dp"
             android:text="@string/busc_tu_tipo_ideal"
+            android:textColor="@color/bg_yellow"
+            android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,18 +39,46 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="76dp"
             android:text="@string/busc_por_clasificaci_n"
+            android:textColor="@color/bg_yellow"
+            android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sv_1" />
 
         <TextView
+            android:id="@+id/tv_titulo3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="100dp"
+            android:text="@string/tipos_si_buscar_inspiraci_n"
+            android:textColor="@color/white"
+            android:textSize="22sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_categoria4" />
+
+        <TextView
+            android:id="@+id/tv_subtitulo1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/si_estas_buscando_algo_nuevo_este_es_tu_lugar"
+            android:textColor="@color/bg_yellow"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_titulo3" />
+
+        <TextView
             android:id="@+id/tv_categoria1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="24dp"
             android:text="@string/elegante"
+            android:textColor="@color/bg_yellow"
+            android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/tv_categoria2"
-            app:layout_constraintHorizontal_bias="0.637"
+            app:layout_constraintHorizontal_bias="0.677"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_titulo2" />
 
@@ -54,9 +86,11 @@
             android:id="@+id/tv_categoria2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
-            android:layout_marginEnd="44dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="36dp"
             android:text="@string/moderna"
+            android:textColor="@color/bg_yellow"
+            android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/tv_categoria3"
             app:layout_constraintTop_toBottomOf="@+id/tv_titulo2" />
 
@@ -64,58 +98,45 @@
             android:id="@+id/tv_categoria3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
-            android:layout_marginEnd="88dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="92dp"
             android:text="@string/clasica"
+            android:textColor="@color/bg_yellow"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_titulo2" />
-
-        <TextView
-            android:id="@+id/tv_titulo3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="44dp"
-            android:text="@string/tipos_si_buscar_inspiraci_n"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_categoria2" />
 
         <TextView
             android:id="@+id/tv_categoria4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
+            android:layout_marginStart="128dp"
+            android:layout_marginTop="24dp"
             android:text="@string/serif"
-            app:layout_constraintEnd_toStartOf="@+id/tv_titulo3"
-            app:layout_constraintHorizontal_bias="0.636"
+            android:textColor="@color/bg_yellow"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_categoria2" />
-
-        <TextView
-            android:id="@+id/tv_subtitulo1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="28dp"
-            android:text="@string/si_estas_buscando_algo_nuevo_este_es_tu_lugar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_categoria5" />
 
         <TextView
             android:id="@+id/tv_categoria5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
             android:text="@string/contemporanea"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_categoria4" />
+            android:textColor="@color/bg_yellow"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.398"
+            app:layout_constraintStart_toEndOf="@+id/tv_categoria4"
+            app:layout_constraintTop_toBottomOf="@+id/tv_categoria2" />
 
         <SearchView
             android:id="@+id/sv_1"
             android:layout_width="371dp"
             android:layout_height="39dp"
             android:layout_marginTop="32dp"
+            android:background="@color/white"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -130,7 +151,8 @@
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="TextSizeCheck">
 
             <Button
                 android:id="@+id/btn_inicio"
