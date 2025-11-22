@@ -2,35 +2,28 @@ package com.example.glypha_primer_parcial_giardina_saracco;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import android.util.Log;
-
-import android.view.Gravity;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
-
 public class MainActivity extends AppCompatActivity {
 
     Button homeBtn, searchBtn, profileBtn;
+
     @SuppressLint("SetTextI18n")
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -45,51 +38,44 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        profileBtn = findViewById(R.id.btn_perfil);
+        searchBtn = findViewById(R.id.btn_buscar);
+        homeBtn = findViewById(R.id.btn_inicio);
+
         //Elementos creados dinamicamente
-
         createFavSeccion();
-    
 
-        profileBtn = (Button) findViewById(R.id.btn_perfil);
-        searchBtn = (Button) findViewById(R.id.btn_buscar);
-        homeBtn = (Button) findViewById(R.id.btn_inicio);
-        profileBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Hiciste click en el boton Perfil.", Toast.LENGTH_SHORT).show();
-
-                changeColorBtn(profileBtn, searchBtn, homeBtn, profileBtn);
-            }
-        });
-//        searchBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(getApplicationContext(), "Seccion Buscar en construccion.", Toast.LENGTH_SHORT).show();
-//
-//                changeColorBtn(profileBtn, searchBtn, homeBtn, searchBtn);
-//            }
-//        });
-        homeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Seccion Inicio en construccion.", Toast.LENGTH_SHORT).show();
-
-                changeColorBtn(profileBtn, searchBtn, homeBtn, homeBtn);
-            }
-        });
-
+        applySelectedFromIntent(getIntent());
     }
 
-    public void createFavSeccion(){
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        applySelectedFromIntent(intent);
+    }
+
+    private void applySelectedFromIntent(Intent intent) {
+        if (intent == null) return;
+        String selected = intent.getStringExtra("selected_tab");
+        if (selected == null) return;
+
+        Button selectedBtn = null;
+        if ("home".equals(selected)) selectedBtn = homeBtn;
+        else if ("search".equals(selected)) selectedBtn = searchBtn;
+        else if ("profile".equals(selected)) selectedBtn = profileBtn;
+
+        if (selectedBtn != null) {
+            changeColorBtn(profileBtn, searchBtn, homeBtn, selectedBtn);
+        }
+    }
+
+    public void createFavSeccion() {
 
         LinearLayout favContainer = findViewById(R.id.fav_container);
 
-        favContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Seccion en desarrollo", Toast.LENGTH_SHORT).show();
-            }
-        });
+        favContainer.setOnClickListener(v -> Toast.makeText(getApplicationContext(), "Seccion en desarrollo", Toast.LENGTH_SHORT).show());
 
         TextView favoritos = new TextView(this);
         favoritos.setTextColor(getColor(R.color.bg_yellow));
@@ -106,39 +92,48 @@ public class MainActivity extends AppCompatActivity {
         arrowIcon.setImageResource(R.drawable.icon_arrow);
         arrowIcon.setColorFilter(getColor(R.color.bg_yellow));
 
-
-
         favContainer.addView(favoritos);
         favContainer.addView(arrowIcon);
     }
 
-    public void changeColorBtn(Button btnProfile, Button btnSearch, Button btnHome, Button btnSelected){
+    public void changeColorBtn(Button btnProfile, Button btnSearch, Button btnHome, Button btnSelected) {
 
         Button[] buttons = {btnProfile, btnSearch, btnHome};
 
-        for(Button btn : buttons){
+        for (Button btn : buttons) {
 
-            if(btn == btnSelected){
+            if (btn == null) continue;
+
+            if (btn == btnSelected) {
 
                 btn.setTextColor(getColor(R.color.blue));
                 Drawable[] icons = btn.getCompoundDrawables();
                 Drawable icon = icons[1];
-                icon.setTint(getColor(R.color.blue));
+                if (icon != null) {
+                    icon = icon.mutate();
+                    icon.setTint(getColor(R.color.blue));
+                    btn.setCompoundDrawablesWithIntrinsicBounds(null, icon, null, null);
+                }
 
-            }else{
+            } else {
 
                 btn.setTextColor(getColor(R.color.black));
                 Drawable[] icons = btn.getCompoundDrawables();
                 Drawable icon = icons[1];
-                icon.setTint(getColor(R.color.black));
+                if (icon != null) {
+                    icon = icon.mutate();
+                    icon.setTint(getColor(R.color.black));
+                    btn.setCompoundDrawablesWithIntrinsicBounds(null, icon, null, null);
+                }
             }
 
         }
 
     }
 
-    public void goSearch(View view){
+    public void goSearch(View view) {
         Intent search = new Intent(this, SearchActivity.class);
+        search.putExtra("selected_tab", "search");
         startActivity(search);
     }
 

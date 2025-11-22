@@ -75,7 +75,7 @@
                 android:drawableTop="@drawable/icon_profile"
                 android:gravity="center"
                 android:text="@string/perfil"
-                android:textColor="@color/blue" />
+                android:textColor="@color/black" />
 
         </LinearLayout>
 

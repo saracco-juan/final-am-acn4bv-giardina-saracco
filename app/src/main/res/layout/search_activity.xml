@@ -37,7 +37,7 @@
             android:id="@+id/tv_titulo2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="76dp"
+            android:layout_marginTop="64dp"
             android:text="@string/busc_por_clasificaci_n"
             android:textColor="@color/bg_yellow"
             android:textSize="22sp"
@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="76dp"
             android:text="@string/tipos_si_buscar_inspiraci_n"
             android:textColor="@color/white"
             android:textSize="22sp"
@@ -62,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:text="@string/si_estas_buscando_algo_nuevo_este_es_tu_lugar"
             android:textColor="@color/bg_yellow"
             android:textSize="14sp"
@@ -70,15 +70,28 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_titulo3" />
 
         <TextView
+            android:id="@+id/tv_categoria5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="64dp"
+            android:background="@drawable/tv_category_border"
+            android:text="@string/contemporanea"
+            android:textColor="@color/bg_yellow"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_categoria2" />
+
+        <TextView
             android:id="@+id/tv_categoria1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/tv_category_border"
             android:text="@string/elegante"
             android:textColor="@color/bg_yellow"
             android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/tv_categoria2"
-            app:layout_constraintHorizontal_bias="0.677"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_titulo2" />
 
@@ -86,20 +99,22 @@
             android:id="@+id/tv_categoria2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="36dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/tv_category_border"
             android:text="@string/moderna"
             android:textColor="@color/bg_yellow"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/tv_categoria3"
+            app:layout_constraintStart_toEndOf="@+id/tv_categoria1"
             app:layout_constraintTop_toBottomOf="@+id/tv_titulo2" />
 
         <TextView
             android:id="@+id/tv_categoria3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="92dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="36dp"
+            android:background="@drawable/tv_category_border"
             android:text="@string/clasica"
             android:textColor="@color/bg_yellow"
             android:textSize="14sp"
@@ -110,25 +125,15 @@
             android:id="@+id/tv_categoria4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="128dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/tv_category_border"
             android:text="@string/serif"
             android:textColor="@color/bg_yellow"
             android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_categoria5"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_categoria2" />
-
-        <TextView
-            android:id="@+id/tv_categoria5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/contemporanea"
-            android:textColor="@color/bg_yellow"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.398"
-            app:layout_constraintStart_toEndOf="@+id/tv_categoria4"
             app:layout_constraintTop_toBottomOf="@+id/tv_categoria2" />
 
         <SearchView
