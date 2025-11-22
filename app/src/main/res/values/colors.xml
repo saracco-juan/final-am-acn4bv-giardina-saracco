@@ -8,4 +8,7 @@
     <color name="bg_btn_navbar">#00FFFFFF</color>
     <color name="dark_blue">#000e20</color>
     <color name="tv_dark_grey">#1a2636</color>
+    <color name="orange">#FF9800</color>
+    <color name="green">#8BC34A</color>
+    <color name="red">#F44336</color>
 </resources>

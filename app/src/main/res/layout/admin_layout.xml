@@ -2,8 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/admin_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/navbar_color">
 
     <EditText
         android:id="@+id/et_id_fuente"
@@ -11,9 +13,13 @@
         android:layout_height="44dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="28dp"
+        android:background="@color/white"
         android:ems="10"
         android:hint="Id"
         android:inputType="number"
+        android:paddingHorizontal="15dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
@@ -23,29 +29,37 @@
         android:layout_height="47dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
+        android:background="@color/white"
         android:ems="10"
         android:hint="Nombre"
         android:inputType="text"
+        android:paddingHorizontal="15dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_id_fuente" />
 
     <Button
         android:id="@+id/btn_cargar_fuente"
         android:layout_width="361dp"
-        android:layout_height="42dp"
+        android:layout_height="52dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
+        android:backgroundTint="@color/green"
         android:onClick="Registrar"
         android:text="Cargar Fuente"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_tamanio_fuente" />
+        app:layout_constraintTop_toBottomOf="@+id/et_tamanio_fuente"
+        app:rippleColor="@color/dark_blue" />
 
     <Button
         android:id="@+id/btn_modificar_fuente"
         android:layout_width="361dp"
-        android:layout_height="42dp"
+        android:layout_height="52dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
+
+        android:backgroundTint="@color/orange"
         android:onClick="Modificar"
         android:text="Modificar Fuente"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,20 +68,38 @@
     <Button
         android:id="@+id/btn_eliminar_fuente"
         android:layout_width="361dp"
-        android:layout_height="42dp"
+        android:layout_height="52dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
+
+        android:backgroundTint="@color/red"
         android:onClick="Eliminar"
         android:text="Eliminar Fuente"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_modificar_fuente" />
 
     <Button
+        android:id="@+id/btn_volver"
+        android:layout_width="361dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="132dp"
+
+        android:backgroundTint="@color/blue"
+        android:onClick="goHome"
+        android:text="Volver al Inicio"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_modificar_fuente" />
+
+    <Button
         android:id="@+id/btn_buscar_fuente"
         android:layout_width="361dp"
-        android:layout_height="42dp"
+        android:layout_height="52dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
+
+        android:backgroundTint="@color/green"
         android:onClick="Buscar"
         android:text="Buscar Fuente"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,9 +111,13 @@
         android:layout_height="44dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
+        android:background="@color/white"
         android:ems="10"
         android:hint="Peso"
         android:inputType="number"
+        android:paddingHorizontal="15dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_nombre_fuente" />
 
@@ -91,9 +127,13 @@
         android:layout_height="44dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
+        android:background="@color/white"
         android:ems="10"
         android:hint="Tamaño"
         android:inputType="number"
+        android:paddingHorizontal="15dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_peso_fuente" />
 
@@ -102,8 +142,8 @@
         android:layout_width="424dp"
         android:layout_height="88dp"
         android:layout_marginTop="32dp"
-        android:background="@color/black"
-        android:backgroundTint="@color/dark_blue"
+        android:background="@color/blue"
+        android:backgroundTint="@color/blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
@@ -113,6 +153,7 @@
             android:id="@+id/textView3"
             android:layout_width="380dp"
             android:layout_height="43dp"
+            android:layout_marginBottom="4dp"
             android:text="Administrador de Fuentes"
             android:textAlignment="viewStart"
             android:textColor="@color/white"
@@ -123,14 +164,5 @@
             app:layout_constraintHorizontal_bias="0.363"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/btn_home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="goHome"
-        android:text="Ir a home"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
