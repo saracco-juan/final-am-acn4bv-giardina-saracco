@@ -14,17 +14,19 @@ public class AdminSQLiteOpenHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table fuentes(id int primary key, nombre string, peso string, tamanio string)");
-        db.execSQL("create table usuarios (id INTEGER primary key autoincrement, nombre TEXT, email TEXT unique, password TEXT)");
-        db.execSQL( "CREATE TABLE favoritos (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "id_usuario INTEGER, " +
-                "id_fuente INTEGER, " +
-                "FOREIGN KEY(id_usuario) REFERENCES usuarios(id), " +
-                "FOREIGN KEY(id_fuente) REFERENCES fuentes(id), " +
-                "UNIQUE(id_usuario, id_fuente))");
+
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+
+//        db.execSQL("create table usuarios (id INTEGER primary key autoincrement, nombre TEXT, email TEXT unique, password TEXT)");
+//        db.execSQL( "CREATE TABLE favoritos (" +
+//                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+//                "id_usuario INTEGER, " +
+//                "id_fuente INTEGER, " +
+//                "FOREIGN KEY(id_usuario) REFERENCES usuarios(id), " +
+//                "FOREIGN KEY(id_fuente) REFERENCES fuentes(id), " +
+//                "UNIQUE(id_usuario, id_fuente))");
 }
