@@ -1,13 +1,14 @@
-package com.example.glypha_primer_parcial_giardina_saracco;
+package com.example.glypha_primer_parcial_giardina_saracco.activities;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,8 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.glypha_primer_parcial_giardina_saracco.R;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -38,6 +41,11 @@ public class HomeActivity extends AppCompatActivity {
         handleFontTest();
 
         textSeccionUnderline();
+    }
+
+    public void goMain(View view){
+        Intent main = new Intent(this, MainActivity.class);
+        startActivity(main);
     }
 
     private void textSeccionUnderline(){
@@ -143,6 +151,8 @@ public class HomeActivity extends AppCompatActivity {
         font_test_txt.setTypeface(font);
     }
 
+
+
     private void handleFontTest(){
 
         EditText inputTxt = findViewById(R.id.inputFont);
@@ -171,4 +181,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

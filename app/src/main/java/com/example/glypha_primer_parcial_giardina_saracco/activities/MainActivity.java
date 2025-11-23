@@ -144,4 +144,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(admin);
     }
 
+    public void goHome(View view){
+        Intent home = new Intent(this, HomeActivity.class);
+        startActivity(home);
+    }
+
 }
