@@ -191,5 +191,11 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(home);
     }
 
+    public void goProfile(View view){
+        Intent profile = new Intent(this, MainActivity.class);
+        profile.putExtra("selected_tab", "profile");
+        startActivity(profile);
+    }
+
 
 }

@@ -206,6 +206,7 @@
                 android:backgroundTint="@color/bg_btn_navbar"
                 android:drawableTop="@drawable/icon_profile"
                 android:gravity="center"
+                android:onClick="goProfile"
                 android:text="@string/perfil"
                 android:textColor="@color/blue" />
 

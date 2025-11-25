@@ -98,9 +98,15 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     public void goHome(View view) {
-        Intent home = new Intent(this, MainActivity.class);
+        Intent home = new Intent(this, HomeActivity.class);
         home.putExtra("selected_tab", "home");
         startActivity(home);
+    }
+
+    public void goProfile(View view){
+        Intent profile = new Intent(this, MainActivity.class);
+        profile.putExtra("selected_tab", "profile");
+        startActivity(profile);
     }
 
 
