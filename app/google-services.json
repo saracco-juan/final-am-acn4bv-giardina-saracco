@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "179503967274",
+    "project_id": "final-app-moviles-d9df3",
+    "storage_bucket": "final-app-moviles-d9df3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:179503967274:android:d62fe8f594915157d66753",
+        "android_client_info": {
+          "package_name": "com.example.glypha_primer_parcial_giardina_saracco"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlM_LaWEqQXyvheJScj315eeQR8ufPDSU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
