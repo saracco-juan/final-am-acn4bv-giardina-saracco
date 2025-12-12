@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                             Intent home = new Intent(getApplicationContext(), HomeActivity.class);
                             startActivity(home);
                         }else{
-                            Toast.makeText(getApplicationContext(), "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(getApplicationContext(), "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
