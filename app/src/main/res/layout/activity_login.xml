@@ -92,7 +92,8 @@
             android:textColor="#FFFFFF"
             android:textSize="14sp"
             android:background="@android:color/transparent"
-            android:textAllCaps="true" />
+            android:textAllCaps="true"
+            android:onClick="handleLogin"/>
 
 
         <TextView
