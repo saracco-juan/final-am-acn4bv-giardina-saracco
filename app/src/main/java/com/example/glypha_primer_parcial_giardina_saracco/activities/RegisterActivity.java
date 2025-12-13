@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -17,10 +18,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
     }
 
     public void handleRegster(View view){
@@ -58,12 +66,31 @@ public class RegisterActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if(task.isSuccessful()){
-                    //Todo: meter el usuario a la bbdd
 
-                    Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class );
-                    startActivity(mainActivity);
+                    String uid = task.getResult().getUser().getUid();
+
+                    HashMap user = new HashMap();
+                    user.put("name",name);
+                    user.put("uid",uid);
+                    user.put("about", about);
+
+                    db
+                        .collection("users")
+                        .add(user)
+                        .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentReference> task) {
+                                if(task.isSuccessful()){
+                                    Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class );
+                                    startActivity(mainActivity);
+                                }
+                            }
+                    });
+
+                }else{
+                    Toast.makeText(getApplicationContext(), "Ocurrio un error al registrarse. Por favor intente de nuevo", Toast.LENGTH_SHORT).show();
+
                 }
-
             }
         });
     }

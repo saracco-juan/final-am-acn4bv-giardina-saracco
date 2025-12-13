@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -67,13 +68,23 @@ public class MainActivity extends AppCompatActivity {
         }else{
             db
                     .collection("users")
-                    .whereEqualTo("uid","shEWBQOgucOom5VMvugtQaI7Vrm1")
+                    .whereEqualTo("uid",currentUser.getUid())
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if(task.isSuccessful()){
-                                Toast.makeText(getApplicationContext(), "Se trajo desde la base", Toast.LENGTH_SHORT).show();
+
+                                QuerySnapshot result = task.getResult();
+                                String name = "";
+                                for (DocumentSnapshot ds: result.getDocuments()) {
+
+                                    name = ds.getData().get("name").toString();
+                                    String about = ds.getData().get("about").toString();
+
+                                }
+
+                                Toast.makeText(getApplicationContext(), "Nombre:"+name+" Uid"+currentUser.getUid(), Toast.LENGTH_LONG).show();
 
                             }
                         }
