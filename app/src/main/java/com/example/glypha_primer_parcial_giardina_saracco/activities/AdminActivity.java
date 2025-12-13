@@ -200,7 +200,7 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     public void goHome(View view){
-        Intent home = new Intent(this, MainActivity.class);
+        Intent home = new Intent(this, HomeActivity.class);
         home.putExtra("selected_tab", "home");
         startActivity(home);
     }

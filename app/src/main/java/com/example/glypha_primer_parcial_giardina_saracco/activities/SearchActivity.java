@@ -109,6 +109,12 @@ public class SearchActivity extends AppCompatActivity {
         startActivity(profile);
     }
 
+    public void goAdmin(View view){
+        Intent admin = new Intent(this, AdminActivity.class);
+        admin.putExtra("selected_tab", "admin");
+        startActivity(admin);
+    }
+
 
     private void applySelectedFromIntent(Intent intent) {
         if (intent == null) return;
