@@ -7,10 +7,12 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.graphics.Insets;
@@ -18,8 +20,21 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.glypha_primer_parcial_giardina_saracco.R;
+import com.example.glypha_primer_parcial_giardina_saracco.data.model.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class HomeActivity extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
+
+    private User userLoged;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +47,46 @@ public class HomeActivity extends AppCompatActivity {
             return insets;
         });
 
+        mAuth = FirebaseAuth.getInstance();
+
+        db = FirebaseFirestore.getInstance();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if(currentUser == null){
+            Intent login = new Intent(this, LoginActivity.class);
+            startActivity(login);
+            finish(); // Cierra esta actividad para que el usuario no pueda volver atrás
+            return;
+        }else{
+            db
+                    .collection("users")
+                    .whereEqualTo("uid",currentUser.getUid())
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if(task.isSuccessful()){
+
+                                QuerySnapshot result = task.getResult();
+
+                                for (DocumentSnapshot ds: result.getDocuments()) {
+
+                                    String name = ds.getData().get("name").toString();
+                                    String about = ds.getData().get("about").toString();
+                                    String mail = ds.getData().get("mail").toString();
+                                    String rol = ds.getData().get("rol").toString();
+
+                                    userLoged = new User(name, rol, mail, about);
+
+                                }
+
+                                handleNavbar();
+                            }
+                        }
+                    });
+        }
+
         textCatCards();
 
         textTendenciasCards();
@@ -39,6 +94,16 @@ public class HomeActivity extends AppCompatActivity {
         handleFontTest();
 
         textSeccionUnderline();
+    }
+
+    public void handleNavbar (){
+
+        Button btn_admin = findViewById(R.id.btn_admin);
+
+        if(userLoged.getRol().equals("cliente")){
+            btn_admin.setVisibility(View.GONE);
+        }
+
     }
 
     private void textSeccionUnderline(){
@@ -153,6 +218,7 @@ public class HomeActivity extends AppCompatActivity {
     public void goSearch(View view) {
         Intent search = new Intent(this, SearchActivity.class);
         search.putExtra("selected_tab", "search");
+        search.putExtra("user", userLoged);
         startActivity(search);
     }
 
@@ -169,6 +235,7 @@ public class HomeActivity extends AppCompatActivity {
     public void goProfile(View view){
         Intent profile = new Intent(this, MainActivity.class);
         profile.putExtra("selected_tab", "profile");
+        profile.putExtra("user", userLoged);
         startActivity(profile);
     }
 

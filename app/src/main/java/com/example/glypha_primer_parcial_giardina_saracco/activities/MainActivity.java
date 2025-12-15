@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -21,17 +21,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.glypha_primer_parcial_giardina_saracco.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+
 import com.example.glypha_primer_parcial_giardina_saracco.adapters.FuentesAdapter;
 import com.example.glypha_primer_parcial_giardina_saracco.data.model.Fuente;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
+
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import com.google.firebase.firestore.QuerySnapshot;
+
 
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -71,43 +70,11 @@ public class MainActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        //Get usuario
+        userLoged = (User) getIntent().getSerializableExtra("user");
 
-        if(currentUser == null){
-            Intent login = new Intent(this, LoginActivity.class);
-            startActivity(login);
-            finish(); // Cierra esta actividad para que el usuario no pueda volver atrás
-            return;
-        }else{
-            db
-                    .collection("users")
-                    .whereEqualTo("uid",currentUser.getUid())
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if(task.isSuccessful()){
-
-                                QuerySnapshot result = task.getResult();
-
-                                for (DocumentSnapshot ds: result.getDocuments()) {
-
-                                    String name = ds.getData().get("name").toString();
-                                    String about = ds.getData().get("about").toString();
-                                    String mail = ds.getData().get("mail").toString();
-                                    String rol = ds.getData().get("rol").toString();
-
-                                    userLoged = new User(name, rol, mail, about);
-
-                                }
-                                //Cargar la informacion del usuario en la vista
-                                loadUserData();
-
-                                handleNavbar();
-                            }
-                        }
-                    });
-        }
+        loadUserData();
+        handleNavbar();
 
         profileBtn = findViewById(R.id.btn_perfil);
         searchBtn = findViewById(R.id.btn_buscar);
@@ -124,6 +91,24 @@ public class MainActivity extends AppCompatActivity {
         applySelectedFromIntent(getIntent());
 
 
+
+
+
+    }
+
+    public void loadUserData(){
+
+        TextView inputName = findViewById(R.id.txt_profile_name);
+
+        inputName.setText(userLoged.getName());
+
+        TextView inputMail = findViewById(R.id.txt_profile_mail);
+
+        inputMail.setText(userLoged.getMail());
+
+        TextView inputAbout = findViewById(R.id.acerca_de_texto);
+
+        inputAbout.setText(userLoged.getAbout());
 
     }
 
@@ -215,22 +200,6 @@ public class MainActivity extends AppCompatActivity {
         if(userLoged.getRol().equals("cliente")){
             btn_admin.setVisibility(View.GONE);
         }
-
-    }
-
-    public void loadUserData(){
-
-        TextView inputName = findViewById(R.id.txt_profile_name);
-
-        inputName.setText(userLoged.getName());
-
-        TextView inputMail = findViewById(R.id.txt_profile_mail);
-
-        inputMail.setText(userLoged.getMail());
-
-        TextView inputAbout = findViewById(R.id.acerca_de_texto);
-
-        inputAbout.setText(userLoged.getAbout());
 
     }
 
