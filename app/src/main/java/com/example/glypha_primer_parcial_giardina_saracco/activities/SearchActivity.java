@@ -18,6 +18,7 @@ import com.example.glypha_primer_parcial_giardina_saracco.R;
 import com.example.glypha_primer_parcial_giardina_saracco.adapters.FuentesAdapter;
 import com.example.glypha_primer_parcial_giardina_saracco.data.db.AdminSQLiteOpenHelper;
 import com.example.glypha_primer_parcial_giardina_saracco.data.model.Fuente;
+import com.example.glypha_primer_parcial_giardina_saracco.data.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -37,6 +38,8 @@ public class SearchActivity extends AppCompatActivity implements FuentesAdapter.
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
+    private User userLoged;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,8 @@ public class SearchActivity extends AppCompatActivity implements FuentesAdapter.
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+
+
 
         searchView = findViewById(R.id.sv_1);
         recyclerView = findViewById(R.id.rv_fuentes);
@@ -54,6 +59,13 @@ public class SearchActivity extends AppCompatActivity implements FuentesAdapter.
 
         cargarFuentesDesdeDB();
 
+        //Get usuario
+        userLoged = (User) getIntent().getSerializableExtra("user");
+
+        handleNavbar();
+
+
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         // Pasamos 'this' como listener
         adapter = new FuentesAdapter(listaCompletaFuentes, this);
@@ -61,6 +73,16 @@ public class SearchActivity extends AppCompatActivity implements FuentesAdapter.
 
         setupSearchView();
         applySelectedFromIntent(getIntent());
+    }
+
+    public void handleNavbar (){
+
+        Button btn_admin = findViewById(R.id.btn_admin);
+
+        if(userLoged.getRol().equals("cliente")){
+            btn_admin.setVisibility(View.GONE);
+        }
+
     }
 
     @Override
@@ -128,12 +150,14 @@ public class SearchActivity extends AppCompatActivity implements FuentesAdapter.
     public void goHome(View view) {
         Intent home = new Intent(this, HomeActivity.class);
         home.putExtra("selected_tab", "home");
+        home.putExtra("user", userLoged);
         startActivity(home);
     }
 
     public void goProfile(View view){
         Intent profile = new Intent(this, MainActivity.class);
         profile.putExtra("selected_tab", "profile");
+        profile.putExtra("user", userLoged);
         startActivity(profile);
     }
 

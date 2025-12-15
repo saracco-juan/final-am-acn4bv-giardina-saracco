@@ -11,8 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -21,22 +21,22 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.glypha_primer_parcial_giardina_saracco.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+
 import com.example.glypha_primer_parcial_giardina_saracco.adapters.FuentesAdapter;
 import com.example.glypha_primer_parcial_giardina_saracco.data.model.Fuente;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
+
+
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
+
+
+
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.example.glypha_primer_parcial_giardina_saracco.data.model.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,11 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rvFavoritos;
     private FuentesAdapter fuentesAdapter;
     private List<Fuente> listaFavoritos;
-
-    private String name;
-    private String about;
-
-    private String mail;
+    private User userLoged;
 
     private Button homeBtn, searchBtn, profileBtn;
     @SuppressLint("SetTextI18n")
@@ -74,40 +70,11 @@ public class MainActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        //Get usuario
+        userLoged = (User) getIntent().getSerializableExtra("user");
 
-        if(currentUser == null){
-            Intent login = new Intent(this, LoginActivity.class);
-            startActivity(login);
-            finish(); // Cierra esta actividad para que el usuario no pueda volver atrás
-            return;
-        }else{
-            db
-                    .collection("users")
-                    .whereEqualTo("uid",currentUser.getUid())
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if(task.isSuccessful()){
-
-                                QuerySnapshot result = task.getResult();
-
-                                for (DocumentSnapshot ds: result.getDocuments()) {
-
-                                    name = ds.getData().get("name").toString();
-                                    about = ds.getData().get("about").toString();
-                                    mail = ds.getData().get("mail").toString();
-
-                                }
-                                //Cargar la informacion del usuario en la vista
-                                loadUserData();
-                                Toast.makeText(getApplicationContext(), "Nombre:"+name+" Uid"+currentUser.getUid(), Toast.LENGTH_LONG).show();
-
-                            }
-                        }
-                    });
-        }
+        loadUserData();
+        handleNavbar();
 
         profileBtn = findViewById(R.id.btn_perfil);
         searchBtn = findViewById(R.id.btn_buscar);
@@ -124,6 +91,24 @@ public class MainActivity extends AppCompatActivity {
         applySelectedFromIntent(getIntent());
 
 
+
+
+
+    }
+
+    public void loadUserData(){
+
+        TextView inputName = findViewById(R.id.txt_profile_name);
+
+        inputName.setText(userLoged.getName());
+
+        TextView inputMail = findViewById(R.id.txt_profile_mail);
+
+        inputMail.setText(userLoged.getMail());
+
+        TextView inputAbout = findViewById(R.id.acerca_de_texto);
+
+        inputAbout.setText(userLoged.getAbout());
 
     }
 
@@ -208,25 +193,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void loadUserData(){
+    public void handleNavbar (){
 
-        TextView inputName = findViewById(R.id.txt_profile_name);
+        Button btn_admin = findViewById(R.id.btn_admin);
 
-        inputName.setText(name);
-
-        TextView inputMail = findViewById(R.id.txt_profile_mail);
-
-        inputMail.setText(mail);
-
-        TextView inputAbout = findViewById(R.id.acerca_de_texto);
-
-        inputAbout.setText(about);
+        if(userLoged.getRol().equals("cliente")){
+            btn_admin.setVisibility(View.GONE);
+        }
 
     }
 
     public void goSearch(View view) {
         Intent search = new Intent(this, SearchActivity.class);
         search.putExtra("selected_tab", "search");
+
+        search.putExtra("user", userLoged);
         startActivity(search);
     }
 
@@ -237,6 +218,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void goHome(View view){
         Intent home = new Intent(this, HomeActivity.class);
+        home.putExtra("user", userLoged);
         startActivity(home);
     }
 }
