@@ -28,8 +28,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class HomeActivity extends BaseActivity {
 
-    private User userLoged;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +40,7 @@ public class HomeActivity extends BaseActivity {
         });
 
         //metodo traido desde BaseActivity
+        initNavbarButtons();
         initFirebase();
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -75,6 +74,7 @@ public class HomeActivity extends BaseActivity {
                                 }
 
                                 handleNavbar();
+                                applySelectedFromIntent(getIntent());
                             }
                         }
                     });
@@ -87,16 +87,6 @@ public class HomeActivity extends BaseActivity {
         handleFontTest();
 
         textSeccionUnderline();
-    }
-
-    public void handleNavbar (){
-
-        Button btn_admin = findViewById(R.id.btn_admin);
-
-        if(userLoged.getRol().equals("cliente")){
-            btn_admin.setVisibility(View.GONE);
-        }
-
     }
 
     private void textSeccionUnderline(){
@@ -207,30 +197,5 @@ public class HomeActivity extends BaseActivity {
             }
         });
     }
-
-    public void goSearch(View view) {
-        Intent search = new Intent(this, SearchActivity.class);
-        search.putExtra("selected_tab", "search");
-        search.putExtra("user", userLoged);
-        startActivity(search);
-    }
-
-    public void goAdmin(View view){
-        Intent admin = new Intent(this, AdminActivity.class);
-        startActivity(admin);
-    }
-
-    public void goHome(View view){
-        Intent home = new Intent(this, HomeActivity.class);
-        startActivity(home);
-    }
-
-    public void goProfile(View view){
-        Intent profile = new Intent(this, MainActivity.class);
-        profile.putExtra("selected_tab", "profile");
-        profile.putExtra("user", userLoged);
-        startActivity(profile);
-    }
-
 
 }
