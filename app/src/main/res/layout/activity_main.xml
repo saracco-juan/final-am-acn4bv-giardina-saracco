@@ -164,14 +164,6 @@
                 android:textColor="@color/blue"
                 android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:text="@string/buenos_aires_argentina"
-                android:textColor="@color/blue"
-                android:textSize="16sp" />
-
         </LinearLayout>
 
         <TextView
@@ -214,7 +206,7 @@
             android:clipToOutline="true"
             android:outlineProvider="background"
             android:scaleType="centerCrop"
-            android:src="@drawable/profile_picture"
+            android:src="@drawable/predeter_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
