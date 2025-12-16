@@ -39,7 +39,6 @@ public class SearchActivity extends BaseActivity implements FuentesAdapter.OnFav
         initNavbarButtons();
         initFirebase();
 
-
         searchView = findViewById(R.id.sv_1);
         recyclerView = findViewById(R.id.rv_fuentes);
         listaCompletaFuentes = new ArrayList<>();
@@ -53,8 +52,6 @@ public class SearchActivity extends BaseActivity implements FuentesAdapter.OnFav
         userLoged = (User) getIntent().getSerializableExtra("user");
 
         handleNavbar();
-
-
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         // Pasamos 'this' como listener
