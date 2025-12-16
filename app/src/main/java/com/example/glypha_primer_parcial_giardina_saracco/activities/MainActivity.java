@@ -33,7 +33,6 @@ public class MainActivity extends BaseActivity {
     private FuentesAdapter fuentesAdapter;
     private List<Fuente> listaFavoritos;
 
-    private Button homeBtn, searchBtn, profileBtn;
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +68,6 @@ public class MainActivity extends BaseActivity {
 
         cargarFavoritos();
         applySelectedFromIntent(getIntent());
-
-
-
 
 
     }
