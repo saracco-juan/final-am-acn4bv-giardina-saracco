@@ -28,7 +28,7 @@
 
 ###  Requisitos del Sistema
 
-- **Android Studio**:  Arctic Fox o superior
+- **Android Studio**
 - **JDK**:  Java Development Kit 11
 - **Android Device/Emulator**: API 29 (Android 10) o superior
 
