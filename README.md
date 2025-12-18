@@ -1,16 +1,34 @@
 # GLYPHA — Aplicación de Tipografías
 
-GLYPHA es una app móvil para explorar tipografías y elegir la fuente adecuada según cada necesidad. Permite navegar por categorías, ver y probar variables (peso, estilo, ancho), comparar dos fuentes y realizar pruebas rápidas con texto. El usuario puede marcar favoritas con persistencia y recibir sugerencias basadas en sus preferencias, buscando combinar utilidad con una interfaz clara y estética.
 
-La pantalla de perfil muestra imagen, nombre, usuario y una breve descripción, además de accesos a Favoritos y Descargas para obtener las fuentes en formato OTF. La navegación inferior organiza el flujo en Inicio, Buscar y Perfil. En el MVP las tipografías vienen precargadas y la incorporación de nuevas requiere intervención del desarrollador; las funciones sociales (seguidores/seguidos) quedan fuera del alcance inicial, con vistas a una futura evolución.
 
-## Stack de tecnologías
-- Java (source/target: 11)
-- Android OS (compileSdk 36, minSdk 29)
-- Android Studio (IDE)
-- Git y GitHub (versionado)
+---
 
-## Links útiles
-- Tablero de tareas: https://trello.com/b/waqmBsKT/glypha-giardina-saracco
-- Link documentacion | informe: https://docs.google.com/document/d/1gvE-jo9yzQ3mBvKv6nMsWlRJksj47MnfDAIETwfyHlM/edit?tab=t.0#heading=h.xcd7mhhvcyfl
+##  Sobre el Proyecto
+
+**GLYPHA** es una aplicación móvil Android diseñada para explorar y seleccionar tipografías de manera profesional. La app permite probar tipografías en tendencia, agregar a favoritos las disintas tipografías, administrarlas desde el perfil de administrador y gestionar la informacion del usuario desde el perfíl.
+
+###  Características Principales
+
+- **Probar tipografías**: Proba las distintas tipografías
+- **Sistema de Favoritos**: Guarda tus tipografías preferidas
+- **Perfil Personalizado**: Gestiona tu información y accede rápidamente a favoritos y descargas
+
+---
+
+##  Stack de Tecnologías
+
+| Tecnología | Versión | Propósito |
+|-----------|---------|-----------|
+| **Java** | 11 | Lenguaje de programación principal |
+| **Android Studio** | Latest | IDE de desarrollo |
+| **Gradle** | Latest | Sistema de build |
+| **Firebase** | - | Base de datos para el usuario |
+| **Git & GitHub** | - | Control de versiones |
+
+###  Requisitos del Sistema
+
+- **Android Studio**:  Arctic Fox o superior
+- **JDK**:  Java Development Kit 11
+- **Android Device/Emulator**: API 29 (Android 10) o superior
 
